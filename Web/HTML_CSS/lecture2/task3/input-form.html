@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link href="styles-task3.css" rel="stylesheet">
+</head>
+<body>
+<div class="form">
+  <div class="form-header">
+    Отправить заявку
+  </div>
+  <div class="form-body">
+    <form action="/echo" method="post">
+
+      <div class="input-field">
+        <p>
+        <label>Ваше имя<br>
+          <input type="text" name="name" value="Ваше имя * ">
+        </label>
+        </p>
+      </div>
+
+      <div class="input-field">
+        <p>
+          <label>Ваш номер телефона<br>
+            <input type="text" name="phone" value="Ваш номер телефона * ">
+          </label>
+        </p>
+      </div>
+
+      <div class="input-field">
+        <p>
+          <label>Ваш email или VK<br>
+            <input type="text" name="email" value="Ваш email или VK * ">
+          </label>
+        </p>
+      </div>
+
+      <div class="input-field">
+        <p>
+          <label>Комментарий<br>
+            <textarea name="comment" rows="5">Комментарий (не обязательно)</textarea>
+          </label>
+        </p>
+      </div>
+
+      <div class="button">
+        Заполните и отправьте форму, и мы перезвоним Вам по указанному номеру
+        <br><input class="send-button" type="submit" value="Отправить заявку">
+      </div>
+
+    </form>
+  </div>
+
+</div>
+</body>
+</html>

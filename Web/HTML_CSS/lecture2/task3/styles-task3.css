@@ -1,0 +1,55 @@
+.form {
+  width: 750px;
+  font-family: "Arial", sans-serif;
+  font-size: 1em;
+  padding: 10px;
+}
+
+.form-body, .form-header {
+  width: 100%;
+  padding: 10px;
+  color: #666666;
+}
+
+.form-header {
+  float: left;
+  background-color: white;
+  font-size: 1.6em;
+  font-weight: bolder;
+}
+
+.form-body {
+  float: left;
+  background-color: #feeed6;
+}
+
+.button {
+  width: 100%;
+  float: left;
+}
+
+.input-field label {
+  font-weight: bolder;
+}
+
+input[type=text], textarea {
+  margin-top: 10px;
+  box-sizing: border-box;
+  color: gray;
+  padding: 5px;
+  width: 100%;
+  font-family: "Arial", sans-serif;
+  font-size: 0.8em;
+}
+
+.send-button {
+  margin-top: 20px;
+  float: right;
+  padding: 10px;
+  width: fit-content;
+  background-color: #378db2;
+  font-size: 1em;
+  color: white;
+  border: none;
+  alignment: right;
+}

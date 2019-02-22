@@ -1,0 +1,31 @@
+body {
+  color: #666666;
+  font-family: "Arial", sans-serif;
+  font-size: 11pt;
+  font-style: normal;
+  font-weight: lighter;
+}
+
+h1 {
+  text-transform: uppercase;
+}
+
+.main {
+  padding: 0 5px;
+  font-style: normal;
+  background-color: #feeed6;
+  width: 740px;
+  height: 400px;
+}
+
+.caption {
+  font-weight: bold;
+  color: #3799BF;
+}
+.higher-price{
+  text-decoration: line-through;
+}
+
+P{
+  font-size: 15px;
+}

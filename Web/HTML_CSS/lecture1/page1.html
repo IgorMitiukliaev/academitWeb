@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Форма</title>
+  <meta name="description" content="Форма">
+  <meta name="keywords" content="ключевые слова">
+</head>
+<body>
+<form action="/echo" method="post">
+
+  <p><label>Фамилия
+    <input id=secondName type="text" name="secondName" value="Иванов"></label></p>
+  <p><label>Имя
+    <input id=firstName type="text" name="firstName" value="Сергей"></label></p>
+  <p><label>Имя пользователя
+    <input id=username type="text" name="username" value="user"></label></p>
+  <p><label>Пароль
+    <input id=password1 type="password" name="password1"></label></p>
+  <p><label>Пароль еще раз
+    <input id=password2 type="password" name="password2"></label></p>
+  <br>
+
+  <p>Расскажите немного о себе</p>
+  <p>Ваш пол<br>
+    <label><input type="radio" checked name="sex" value="male">Мужской<br></label>
+    <label><input type="radio" name="sex" value="female">Женский<br></label>
+  </p>
+
+  <p><label>
+    Ваш родной город?<br>
+    <select name="city">
+      <option value="PAR">Париж</option>
+      <option value="MSK">Москва</option>
+      <option value="SPB">Санкт-Петербург</option>
+      <option value="NSK">Новосибирск</option>
+      <option value="OTH">из провинции я...</option>
+    </select>
+  </label></p>
+
+  <p><label>
+    Какой вид путешествий в другую страну Вам ближе?<br>
+    <select name="rest" multiple size="3">
+      <option value="TRIP" selected>Пляжный туризм</option>
+      <option value="ACTV">Активный туризм</option>
+      <option value="LANG">Общение, погружения в языковую среду</option>
+      <option value="MUSM">Посещение музеев</option>
+      <option value="FOOD">Знакомство с местной кухней</option>
+    </select>
+  </label></p>
+
+  <p><label>Расскажите подробнее о Ваших интересах<br>
+    <textarea name="interests" rows="4" cols="40">Введите текст</textarea></label></p>
+
+
+  <p><label><input type="checkbox" id="dataCorrect">
+    Вы подтверждаете правильность введенных данных?</label></p>
+
+  <br><input type="submit" value="Отправить анкету">
+</form>
+
+<p><a href="page2.html"> Перейти на страницу 2
+</a></p>
+
+</body>
+</html>
+

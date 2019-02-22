@@ -1,0 +1,20 @@
+table{
+  border-collapse: collapse;
+  border: 1px solid lightgray;
+  font: normal normal normal 14pt sans-serif;
+  width: 750px;
+}
+thead{
+  background-color: #3498db;
+  color: white;
+}
+tbody{
+  color: black;
+}
+td, th{
+  border: 1px solid lightgray;
+  padding: 10px;
+}
+tr:nth-child(even){
+  background-color: #eeeeee;
+}
