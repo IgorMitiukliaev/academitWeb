@@ -1,20 +1,42 @@
-table{
-  border-collapse: collapse;
+table {
+  table-layout: auto;
+  font-family: Helvetica, Arial, sans-serif;
+  display: block;
   border: 1px solid lightgray;
-  font: normal normal normal 14pt sans-serif;
-  width: 750px;
+  border-collapse: collapse;
+  font-size: 14pt;
+
 }
-thead{
+
+thead {
   background-color: #3498db;
   color: white;
+  text-align: left;
 }
-tbody{
+
+tbody {
   color: black;
 }
-td, th{
+
+td, th {
+  box-sizing: border-box;
   border: 1px solid lightgray;
-  padding: 10px;
+  padding: 13px 11px;
 }
-tr:nth-child(even){
+
+tr:nth-child(odd) :not(th) {
   background-color: #eeeeee;
 }
+
+.first-name, .last-name {
+  width: 150px;
+}
+
+.job-title {
+  width: 270px;
+}
+
+.twitter {
+  width: 180px;
+}
+
