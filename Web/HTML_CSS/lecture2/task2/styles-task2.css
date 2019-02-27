@@ -1,42 +1,46 @@
-table {
-  table-layout: auto;
-  font-family: Helvetica, Arial, sans-serif;
-  display: block;
-  border: 1px solid lightgray;
-  border-collapse: collapse;
-  font-size: 14pt;
-
+.table {
+  max-width: 750px;
 }
 
-thead {
+.table table {
+  table-layout: auto;
+  width: 100%;
+  font-family: Helvetica, Arial, sans-serif;
+  margin: 10px;
+  border-collapse: collapse;
+  font-size: 20px;
+  border: none;
+}
+
+.table thead {
   background-color: #3498db;
   color: white;
   text-align: left;
 }
 
-tbody {
+.table tbody {
   color: black;
 }
 
-td, th {
+.table td, th {
   box-sizing: border-box;
   border: 1px solid lightgray;
   padding: 13px 11px;
 }
 
-tr:nth-child(odd) :not(th) {
+.table tr:nth-child(odd) :not(th) {
   background-color: #eeeeee;
 }
 
 .first-name, .last-name {
-  width: 150px;
+  width: 20%;
 }
 
 .job-title {
-  width: 270px;
+  width: 35%;
 }
 
 .twitter {
-  width: 180px;
+  width: 25%;
 }
 

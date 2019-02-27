@@ -7,12 +7,13 @@
 }
 
 .container {
-  max-width: 700px;
+  max-width: 740px;
   margin: 0 auto;
+  padding: 0 20px;
   box-sizing: border-box;
 }
 
-h1 {
+div.header h1 {
   font-size: 2em;
   font-weight: 500;
   margin-bottom: 5px;
@@ -31,58 +32,61 @@ h1 {
 .input-field {
   box-sizing: border-box;
   float: left;
- width: 100%;
+  width: 100%;
   margin-bottom: 15px;
   font-weight: 700;
 }
 
-label {
+.input-field label {
   display: block;
   margin-bottom: 5px;
+  color: gray;
 }
 
-input[type=text], textarea {
-  padding: 6px 12px;
+.input-field input, .input-field textarea {
+  margin: 2px 0;
+  padding: 10px 12px;
   box-sizing: border-box;
   border: none;
-  color: gray;
-  width: 100%;
   font-family: Arial, sans-serif;
   font-size: 14px;
-  margin: 6px 0;
+  width: 100%;
 }
 
-textarea {
+input::placeholder, textarea::placeholder{
+  color: #bbbbbb;
+}
+
+.input-field textarea {
   resize: vertical;
 }
 
 .button-text {
   float: left;
 }
-.button{
+
+.button {
   float: right;
 }
-button:hover{
+
+button:hover {
   background-color: #31718c;
 }
 
 .send-button {
   font-family: Helvetica, Arial, sans-serif;
   display: block;
-  float: right;
   font-size: 14px;
-  alignment: right;
   font-weight: 700;
-  margin: 20px 0;
-  width: fit-content;
+  margin: 25px 0;
   background-color: #378db2;
   color: white;
   border: none;
-  padding: 6px 12px;
+  padding: 8px 12px;
   cursor: pointer;
 }
 
-.clearfix{
+.clearfix {
   clear: both;
   height: 0;
 }
