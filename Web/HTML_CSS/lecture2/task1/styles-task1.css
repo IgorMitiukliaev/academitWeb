@@ -1,38 +1,41 @@
 body {
   color: #666666;
   font-family: "Arial", sans-serif;
-
   font-style: normal;
   font-weight: lighter;
 }
 
-h1 {
+.header-line {
   text-transform: uppercase;
   font-size: 2em;
   font-weight: 400;
 }
+
 .main {
-  padding:  20px;
+  padding: 20px;
   font-size: 14px;
-   background-color: #feeed6;
+  background-color: #feeed6;
   max-width: 740px;
   height: auto;
 }
+
 .feature {
   font-family: Helvetica, Arial, sans-serif;
   margin: 10px 0;
   font-size: 1.1em;
   display: block;
 }
+
 .caption {
   font-weight: 700;
   color: #3799BF;
 }
-.higher-price{
+
+.higher-price {
   text-decoration: line-through;
 }
 
-.paragraph{
+.paragraph {
   margin-bottom: 10px;
   text-indent: 1.5em;
   text-align: justify;

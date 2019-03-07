@@ -13,7 +13,7 @@
   box-sizing: border-box;
 }
 
-div.header h1 {
+.header h1 {
   font-size: 2em;
   font-weight: 500;
   margin-bottom: 5px;
@@ -40,7 +40,7 @@ div.header h1 {
 .input-field label {
   display: block;
   margin-bottom: 5px;
-  color: gray;
+  color: #676565;
 }
 
 .input-field input, .input-field textarea {
@@ -53,7 +53,7 @@ div.header h1 {
   width: 100%;
 }
 
-input::placeholder, textarea::placeholder{
+input::placeholder, textarea::placeholder {
   color: #bbbbbb;
 }
 

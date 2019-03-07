@@ -22,13 +22,13 @@
   color: black;
 }
 
-.table td, th {
+.table td, .table th {
   box-sizing: border-box;
   border: 1px solid lightgray;
   padding: 13px 11px;
 }
 
-.table tr:nth-child(odd) :not(th) {
+.table tbody tr:nth-child(odd) {
   background-color: #eeeeee;
 }
 
