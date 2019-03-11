@@ -6,7 +6,7 @@ function numCompareDescending(a, b) {
 
 function getEvenList(array) {
   return array.filter(function (e) {
-    return (e % 2 === 0) & (e > 0);
+    return (e % 2 === 0) & (e !== 0);
   })
 }
 
