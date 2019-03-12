@@ -1,25 +1,25 @@
 "use strict";
 
 function numCompareDescending(a, b) {
-  return b - a;
+	return b - a;
 }
 
 function getEvenList(array) {
-  return array.filter(function (e) {
-    return (e % 2 === 0) & (e !== 0);
-  })
+	return array.filter(function (e) {
+		return (e % 2 === 0);
+	})
 }
 
 function getSum(array) {
-  return array.reduce(function (sum, current) {
-    return sum + current;
-  }, 0)
+	return array.reduce(function (sum, current) {
+		return sum + current;
+	}, 0)
 }
 
-function getSquareList(array) {
-  return array.map(function (e) {
-    return e * e;
-  });
+function getSquaresList(array) {
+	return array.map(function (e) {
+		return e * e;
+	});
 }
 
 var array = [1, 2, 3, 3, 4, 5, 6, 7, 7, 9];
@@ -32,8 +32,8 @@ console.log("Сумма четных элементов массива: " + getS
 
 var numbers = [];
 for (var i = 0; i <= 100; i++) {
-  numbers.push(i);
+	numbers.push(i);
 }
 
-var newArray = getSquareList(getEvenList(numbers));
+var newArray = getSquaresList(getEvenList(numbers));
 console.log("Список квадратов четных элементов массива: " + newArray);
