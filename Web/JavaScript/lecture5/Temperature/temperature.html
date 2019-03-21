@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Конвертор температур</title>
+    <link rel="stylesheet" href="../../../HTML_CSS/reset.css">
+    <link href="temperature-styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="container">
+    <table id="formTable">
+        <caption>Конвертор температур</caption>
+        <tr>
+            <td colspan="2">Значение температуры:</td>
+        </tr>
+        <tr>
+            <td id="value"><input type="text" id="tempValue" name="tempValue"></td>
+            <td id="inputUnit">
+                <select name="tempUnit" id="tempUnit">
+                    <option value=1 selected>°C</option>
+                    <option value=2>°F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button id="submitButton" type="button" onclick="convert()">Перевести</button>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">Результаты перевода:</td>
+        </tr>
+        <tr>
+            <td id="tempValueC"></td>
+            <td>°C</td>
+        </tr>
+        <tr>
+            <td id="tempValueF"></td>
+            <td>°F</td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript" src="temperature-script.js"></script>
+</body>
+</html>
