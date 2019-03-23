@@ -74,7 +74,7 @@ ul {
 
 }
 
-.edit, .delete {
+.edit, .delete, .esc {
     margin-right: 5px;
     display: inline-block;
     float: left;

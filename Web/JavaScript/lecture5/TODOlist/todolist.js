@@ -29,7 +29,7 @@ function showList() {
 	item.innerHTML = '';
 	for (i = list.length - 1; i >= 0; i--) {
 		var e = document.createElement('li');
-		e.innerHTML = "<div id=\"" + i + "\" class=\"clearfix\"> <span class=\"item\">" + list[i].itemDetail +
+		e.innerHTML = "<div id=\"" + i + "\" class=\"clearfix\"> <span class=\"item todo-list-item\">" + list[i].itemDetail +
 			"</span><button class=\"item my-button edit\" onclick=\"editListItem()\">Edit</button>" +
 			"<button class=\"item my-button delete\" id=\"" + i + "\" onclick=\"deleteItem()\">Del</button>"
 			+ "</div>";
@@ -40,9 +40,10 @@ function showList() {
 function editListItem() {
 	var item = document.activeElement.parentElement;
 	var itemId = Number(document.activeElement.parentElement.getAttribute('id'));
-	item.innerHTML = "<textarea class=\"edit item todo-list-item\">" + list[itemId].itemDetail +
-		"</textarea><button class=\"item my-button edit\" onclick=\"saveItemDetail()\">Save</button>" +
-		"<button class=\"item my-button delete\" onclick=\"deleteItem()\">Del</button>"
+	item.innerHTML = "<textarea class=\"edit item todo-list-item\">"
+		+ list[itemId].itemDetail
+		+ "</textarea><button class=\"item my-button esc\" onclick=\"showList()\">Esc</button>"
+		+ "<button class=\"item my-button edit\" onclick=\"saveItemDetail()\">Save</button>"
 }
 
 function saveItemDetail() {
