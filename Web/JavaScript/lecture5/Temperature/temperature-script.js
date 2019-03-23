@@ -1,29 +1,50 @@
 "use strict";
-function convert() {
-	var tempInput = Number(document.getElementById('tempValue').value);
-	var tempUnit = document.getElementById('tempUnit').value;
+var tempValue = [];
+var tempUnit;
+var KELVIN = 273.15;
 
-	var tempValueF = 0;
-	var tempValueC = 0;
+function convert() {
+	var tempInput = document.getElementById('tempValue').value;
+
+	tempUnit = document.getElementById('tempUnit').value;
+	if (tempInput === "" || isNaN(Number(tempInput))) {
+		showResults(true);
+		return;
+	}
+	tempInput = Number(tempInput);
 	switch (tempUnit) {
-		case "1":
-			tempValueF = Math.round(tempInput * 1.8 + 32);
-			tempValueC = tempInput;
+		case "C":
+			tempValue[0] = tempInput;
+			tempValue[1] = tempValue[0] * 1.8 + 32;
+			tempValue[2] = tempValue[0] + KELVIN;
 			break;
-		case "2":
-			tempValueC = Math.round((tempInput - 32) / 1.8);
-			tempValueF = tempInput;
+		case "F":
+			tempValue[1] = tempInput;
+			tempValue[0] = (tempValue[1] - 32) / 1.8;
+			tempValue[2] = tempValue[0] + KELVIN;
+			break;
+		case "K":
+			tempValue[2] = tempInput;
+			tempValue[0] = tempValue[2] - KELVIN;
+			tempValue[1] = tempValue[0] * 1.8 + 32;
 			break;
 	}
-
-	var cell = document.getElementById('tempValueC');
-	cell.innerHTML = tempValueC;
-	cell = document.getElementById('tempValueF');
-	cell.innerHTML = tempValueF;
-
-	console.log(tempValueC);
-	console.log(tempValueF);
-
-
+	showResults(false);
 }
 
+function showResults(e) {
+	if (e) {
+		document.getElementById('tempValue').style.borderColor = "red";
+		document.getElementById('results').style.display = "none";
+	} else {
+		document.getElementById('tempValue').style.borderColor = "inherit";
+
+		var el = document.getElementsByClassName("resultValue");
+		for (var i = 0; i < el.length; i++) {
+			el[i].innerHTML = String(Math.round(tempValue[i] * 10) / 10 + (i < 2 ? String.fromCharCode(176) : "") + el[i].getAttribute('id'));
+			el[i].style.display = "block";
+		}
+		document.getElementById(tempUnit).style.display = "none";
+		document.getElementById('results').style.display = "block";
+	}
+}

@@ -8,40 +8,28 @@
 </head>
 
 <body>
-<div class="container">
-    <table id="formTable">
-        <caption>Конвертор температур</caption>
-        <tr>
-            <td colspan="2">Значение температуры:</td>
-        </tr>
-        <tr>
-            <td id="value"><input type="text" id="tempValue" name="tempValue"></td>
-            <td id="inputUnit">
-                <select name="tempUnit" id="tempUnit">
-                    <option value=1 selected>°C</option>
-                    <option value=2>°F</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <button id="submitButton" type="button" onclick="convert()">Перевести</button>
-            </td>
-        </tr>
 
-        <tr>
-            <td colspan="2">Результаты перевода:</td>
-        </tr>
-        <tr>
-            <td id="tempValueC"></td>
-            <td>°C</td>
-        </tr>
-        <tr>
-            <td id="tempValueF"></td>
-            <td>°F</td>
-        </tr>
-    </table>
+<div class="container">
+    <div class="header">Конвертор температур</div>
+    <div id="input"><span>Значение температуры:</span>
+        <br>
+        <input id="tempValue" type="text" name="tempValue" value="">
+        <select id="tempUnit" onchange="convert()">
+            <option value="C" selected>°C</option>
+            <option value="F">°F</option>
+            <option value="K">K</option>
+        </select>
+
+        <button id="submit" type="button" onclick="convert()"> =</button>
+    </div>
+
+    <div id="results" style="display: none"><span class="header">Результаты перевода:</span><br>
+        <div class="resultValue" id="C">°C</div>
+        <div class="resultValue" id="F">°F</div>
+        <div class="resultValue" id="K">K</div>
+    </div>
 </div>
-<script type="text/javascript" src="temperature-script.js"></script>
+
+<script type="text/javascript" src="temperature-script.js" defer="defer"></script>
 </body>
 </html>

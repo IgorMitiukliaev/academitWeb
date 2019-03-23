@@ -1,12 +1,25 @@
 .container {
-    max-width: 600px;
+    max-width: 400px;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 5px;
+    margin: 10px;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 14px;
+    font-size: 18px;
     background-color: beige;
 }
+div{
+    margin: 10px 0;
+}
+#tempValue, #tempUnit{
+    font-size: 18px;
+}
+.header {
+    font-weight: bold;
+    font-size: larger;
+}
 
-td, caption {
+#results, #input{
+    margin-top: 10px;
     padding: 5px;
 }
+
