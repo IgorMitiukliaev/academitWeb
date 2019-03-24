@@ -1,12 +1,21 @@
 "use strict";
-var tempValue = [];
 var tempUnit;
 var KELVIN = 273.15;
 
-function convert() {
-	var tempInput = document.getElementById('tempValue').value;
+document.addEventListener("DOMContentLoaded", ready);
 
-	tempUnit = document.getElementById('tempUnit').value;
+var buttonConvert = document.getElementById('submit');
+var tempInputValue = document.getElementById('tempValue');
+var tempInputUnit = document.getElementById('tempUnit');
+
+function ready() {
+	buttonConvert.addEventListener("click", convert);
+	tempInputUnit.addEventListener("change", convert);
+}
+
+function convert() {
+	var tempInput = tempInputValue.value;
+	tempUnit = tempInputUnit.value;
 	if (tempInput === "" || isNaN(Number(tempInput))) {
 		showResults(true);
 		return;
@@ -32,19 +41,24 @@ function convert() {
 	showResults(false);
 }
 
-function showResults(e) {
-	if (e) {
-		document.getElementById('tempValue').style.borderColor = "red";
+function showResults(error) {
+	if (error) {
+		tempInputValue.style.borderColor = "red";
+		tempInputValue.placeholder = "введите число!";
 		document.getElementById('results').style.display = "none";
-	} else {
-		document.getElementById('tempValue').style.borderColor = "inherit";
-
-		var el = document.getElementsByClassName("resultValue");
-		for (var i = 0; i < el.length; i++) {
-			el[i].innerHTML = String(Math.round(tempValue[i] * 10) / 10 + (i < 2 ? String.fromCharCode(176) : "") + el[i].getAttribute('id'));
-			el[i].style.display = "block";
-		}
-		document.getElementById(tempUnit).style.display = "none";
-		document.getElementById('results').style.display = "block";
+		return;
 	}
+
+	tempInputValue.placeholder = "";
+	tempInputValue.style.borderColor = "inherit";
+	var el = document.getElementsByClassName("resultValue");
+	for (var i = 0; i < el.length; i++) {
+		el[i].innerHTML = Math.round(tempValue[i] * 10) / 10;
+		el[i].innerHTML += (i < 2 ? String.fromCharCode(176) : "");
+		el[i].innerHTML += el[i].getAttribute('id');
+		el[i].style.display = "block";
+	}
+	document.getElementById(tempUnit).style.display = "none";
+	document.getElementById('results').style.display = "block";
+
 }

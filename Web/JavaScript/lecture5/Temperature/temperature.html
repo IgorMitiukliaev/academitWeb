@@ -10,23 +10,25 @@
 <body>
 
 <div class="container">
-    <div class="header">Конвертор температур</div>
-    <div id="input"><span>Значение температуры:</span>
-        <br>
-        <input id="tempValue" type="text" name="tempValue" value="">
-        <select id="tempUnit" onchange="convert()">
+
+    <div id="input" class="input">
+        <div class="header input">Конвертор температур</div>
+        <label>Значение температуры:<br>
+            <input id="tempValue" class="input" type="text" name="tempValue" value=""></label>
+        <select id="tempUnit" class="input">
             <option value="C" selected>°C</option>
             <option value="F">°F</option>
             <option value="K">K</option>
         </select>
 
-        <button id="submit" type="button" onclick="convert()"> =</button>
+        <button id="submit" type="button"> =</button>
     </div>
 
-    <div id="results" style="display: none"><span class="header">Результаты перевода:</span><br>
-        <div class="resultValue" id="C">°C</div>
-        <div class="resultValue" id="F">°F</div>
-        <div class="resultValue" id="K">K</div>
+    <div id="results" style="display: none">
+        <div class="header results">Результаты перевода:</div>
+        <div class="resultValue results" id="C">°C</div>
+        <div class="resultValue results" id="F">°F</div>
+        <div class="resultValue results" id="K">K</div>
     </div>
 </div>
 
