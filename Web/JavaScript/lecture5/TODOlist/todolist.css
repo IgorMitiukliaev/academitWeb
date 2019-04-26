@@ -31,11 +31,18 @@ h1 {
 }
 
 .addField {
+    float: left;
     border-radius: 5px;
     width: 75%;
     height: 20px;
     margin: 0 5px 5px 5px;
     padding: 5px;
+}
+
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
 }
 
 button {
@@ -73,7 +80,7 @@ ul {
     resize: none;
 }
 
-.edit, .delete, .esc {
+.my-button {
     border-radius: 5px;
     padding: 5px;
     margin: 0 5px 5px 5px;
