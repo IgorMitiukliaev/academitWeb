@@ -1,0 +1,62 @@
+.container {
+    box-sizing: border-box;
+    margin: 20px;
+    width: 70%;
+    font: normal 12px Helvetica, Arial, sans-serif;
+}
+
+.header {
+    font: bold 20px Helvetica, sans-serif;
+}
+
+.inputForm {
+    width: 90%;
+    box-sizing: border-box;
+    margin: 20px 0;
+}
+
+.input {
+    float: left;
+    border-color: lightgrey;
+    border-style: solid;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+.alert {
+    border-color: red;
+}
+
+.alertBox {
+    float: right;
+    padding: 5px 10px;
+    font-size: 20px;
+    color: red;
+}
+.noDisplay {
+    display: none;
+}
+
+td {
+    text-align: center;
+}
+
+.mainTable {
+    border: 1px solid #999999;
+    width: 90%;
+    table-layout: auto;
+    border-collapse: collapse;
+}
+
+.colNumber, .colDelete {
+    width: 5%;
+}
+
+.colFirstName, .colLastName {
+    width: 35%;
+}
+
+.mainTable td, th {
+    border: 1px solid lightgray;
+    padding: 5px 10px;
+}
