@@ -20,8 +20,6 @@ $(document).ready(function () {
 		});
 	}
 
-	$("#addButton").click(addItem);
-
 	function addItem() {
 		var formData = $(".inputForm");
 		var itemFirstName = formData.find("#formFirstName").val();
@@ -60,6 +58,8 @@ $(document).ready(function () {
 		list.splice(i, 1);
 		render();
 	}
+
+	$("#addButton").click(addItem);
 });
 
 
