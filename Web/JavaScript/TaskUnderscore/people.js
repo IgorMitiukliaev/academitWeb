@@ -8,7 +8,7 @@ people.push({name: "Garrett", age: 21, lastName: "Gibbs"});
 people.push({name: "Karlee", age: 39, lastName: "Kane"});
 people.push({name: "Veronica", age: 55, lastName: "Martinez"});
 people.push({name: "Melissa", age: 44, lastName: "Gomez"});
-people.push({name: "Joseph", age: 36, lastName: "Weber"});
+people.push({name: "Joseph", age: 46, lastName: "Weber"});
 
 var averageAge = _.chain(people)
 	.pluck("age")
