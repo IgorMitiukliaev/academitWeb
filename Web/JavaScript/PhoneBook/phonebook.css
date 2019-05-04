@@ -37,8 +37,10 @@
     display: none;
 }
 
-td {
+.cell  {
+    border: 1px solid #999999;
     text-align: center;
+    padding: 5px 10px;
 }
 
 .mainTable {
@@ -46,6 +48,7 @@ td {
     width: 90%;
     table-layout: auto;
     border-collapse: collapse;
+
 }
 
 .colNumber, .colDelete {
@@ -54,9 +57,4 @@ td {
 
 .colFirstName, .colLastName {
     width: 35%;
-}
-
-.mainTable td, th {
-    border: 1px solid lightgray;
-    padding: 5px 10px;
 }

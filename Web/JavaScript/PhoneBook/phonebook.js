@@ -4,18 +4,19 @@ $(document).ready(function () {
 	var tbody = table.find("#tBody");
 
 	function render() {
-		tbody.html("");
-		$(".inputForm").children().val("");
+		tbody.empty();
+		$(".inputForm").children().filter(".input").val("");
 		list.forEach(function (item, i, list) {
-			var row = $("<tr></tr>");
+			var row = $("<tr class=\"row\"></tr>");
 			var delButton = $("<button id=\"" + i + "\" class=\"btn delete\">X</button>")
 				.click(deleteItem);
 			row.append("<td class=\"colNumber\">" + (i + 1) + "</td>")
-				.append("<td class=\"colFirstName\">" + list[i].firstName + "</td>")
-				.append("<td class=\"colLastName\">" + list[i].lastName + "</td>")
-				.append("<td class=\"colPhone\">" + list[i].phone + "</td>")
+				.append($("<td class=\"colFirstName\"></td>").text(list[i].firstName))
+				.append($("<td class=\"colLastName\"></td>").text(list[i].lastName))
+				.append($("<td class=\"colPhone\"></td>").text(list[i].phone))
 				.append("<td class=\"colDelete\"></td></tr>");
 			row.children(".colDelete").append(delButton);
+			row.children().addClass("cell");
 			tbody.append(row);
 		});
 	}
@@ -42,7 +43,7 @@ $(document).ready(function () {
 	function validateInput() {
 		var check = true;
 		$(".input").each(function () {
-			el = $(this);
+			var el = $(this);
 			if (el.val() === "") {
 				el.addClass("alert");
 				check = false;
@@ -54,7 +55,7 @@ $(document).ready(function () {
 	}
 
 	function deleteItem() {
-		i = $(this).attr("id");
+		var i = $(this).attr("id");
 		list.splice(i, 1);
 		render();
 	}

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Phone Book</title>
-    <link rel="stylesheet" href="../../HTML_CSS/reset.css">
+    <link rel="stylesheet" href="reset.css" type="text/css">
     <link rel="stylesheet" href="phonebook.css" type="text/css">
 </head>
 <body>
@@ -22,12 +22,12 @@
 
     <table id="mainTable" class="mainTable">
         <thead>
-        <tr>
-            <th class="colNumber">#</th>
-            <th class="colFirstName">First Name</th>
-            <th class="colLastName">Last Name</th>
-            <th class="colPhone">Phone</th>
-            <th class="colDelete">Del</th>
+        <tr class="row">
+            <th class="cell colNumber">#</th>
+            <th class="cell colFirstName">First Name</th>
+            <th class="cell colLastName">Last Name</th>
+            <th class="cell colPhone">Phone</th>
+            <th class="cell colDelete">Del</th>
         </tr>
         </thead>
         <tbody id="tBody">
@@ -36,7 +36,7 @@
     </table>
 
 </div>
-<script src="../../node_modules/jquery/dist/jquery.js"></script>
+<script src="node_modules/jquery/dist/jquery.js"></script>
 <script src="phonebook.js"></script>
 </body>
 </html>
