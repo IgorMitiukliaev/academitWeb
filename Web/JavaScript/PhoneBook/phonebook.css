@@ -10,8 +10,8 @@
 }
 
 .inputForm {
-    width: 90%;
     box-sizing: border-box;
+    width: 90%;
     margin: 20px 0;
 }
 
@@ -21,6 +21,11 @@
     border-style: solid;
     border-radius: 3px;
     margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.addButton {
+    float: left;
 }
 
 .alert {
@@ -28,16 +33,24 @@
 }
 
 .alertBox {
-    float: right;
-    padding: 5px 10px;
+    padding: 0 10px;
+    float: left;
+    width: auto;
     font-size: 20px;
     color: red;
 }
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 .noDisplay {
     display: none;
 }
 
-.cell  {
+.cell {
     border: 1px solid #999999;
     text-align: center;
     padding: 5px 10px;
@@ -48,7 +61,6 @@
     width: 90%;
     table-layout: auto;
     border-collapse: collapse;
-
 }
 
 .colNumber, .colDelete {
