@@ -1,10 +1,4 @@
-.clearfix::after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.container {
+body {
     font-family: Helvetica, Arial, sans-serif;
     color: #222222;
 }
@@ -14,19 +8,13 @@
     margin: 5px;
 }
 
-.btn {
+.my-btn  {
+    width: auto;
+    min-width: 5em;
     margin-left: 5px;
-    width: 4em;
 }
 
 .list-item {
     margin-bottom: 5px;
 }
 
-button:hover {
-    background-color: transparent;
-}
-
-textarea {
-    resize: none !important;
-    }

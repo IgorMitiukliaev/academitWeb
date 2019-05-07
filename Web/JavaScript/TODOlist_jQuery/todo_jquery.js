@@ -1,12 +1,12 @@
 $(document).ready(function () {
-	var list = [];
-	$("#addButton")[0].addEventListener("click", addItem, false);
-	var addField = $("#addField");
-	addField[0].addEventListener("change", addItem, false);
-	var editButton = $("</div><button class=\"btn btn-sm btn-outline-primary edit\">Edit</button>");
-	var delButton = $("<button class=\"btn btn-sm btn-outline-primary del\">Del</button>");
-	var escButton = $("<button class=\"btn btn-sm btn-outline-primary esc\">Esc</button>");
-	var saveButton = $("<button class=\"btn btn-sm btn-outline-primary save\">Save</button>");
+	var records = [];
+	$("#addButton").click(addItem);
+	var addField = $("#addField")
+		.change(addItem);
+	var editButton = $("<button class=\"btn btn-sm btn-outline-primary edit my-btn \">Edit</button>");
+	var delButton = $("<button class=\"my-btn btn btn-sm btn-outline-primary del my-btn \">Del</button>");
+	var escButton = $("<button class=\"my-btn btn btn-sm btn-outline-primary esc my-btn \">Esc</button>");
+	var saveButton = $("<button class=\"my-btn btn btn-sm btn-outline-primary save my-btn \">Save</button>");
 
 	function addEventListeners() {
 		$(".esc").click(showList);
@@ -18,7 +18,7 @@ $(document).ready(function () {
 	function addItem() {
 		var itemDetail = addField.val();
 		if (itemDetail.length > 0) {
-			list.push({
+			records.push({
 				itemDetail: itemDetail
 			});
 			addField.val("");
@@ -28,14 +28,15 @@ $(document).ready(function () {
 
 	function showList() {
 		var item = $("#list");
-		item[0].innerHTML = "";
-		for (var i = list.length - 1; i >= 0; i--) {
+		item.empty();
+		var i = records.length - 1;
+		for (; i >= 0; i--) {
 			var itemContent = $("<div></div>")
 				.attr("id", i)
 				.addClass("list-item input-group");
-			var itemText = $("<div><div")
+			var itemText = $("<div></div>")
 				.addClass("text form-control")
-				.text(list[i].itemDetail);
+				.text(records[i].itemDetail);
 			itemContent.append(itemText)
 				.appendTo(item[0]);
 		}
@@ -50,8 +51,8 @@ $(document).ready(function () {
 	function editListItem() {
 		var item = $(this).parent().parent();
 		var itemId = Number(item[0].id);
-		var element = $("<textarea id=\"textarea\" rows=\"1\"></textarea>")
-			.text(list[itemId].itemDetail)
+		var element = $("<input id=\"editText\" class=\"form-control input-field\" type=\"text\">")
+			.val(records[itemId])
 			.addClass("form-control input-field");
 		var buttonGroup = $("<div class=\"input-group-append\" id=\"button-addon4\"></div>");
 		buttonGroup.append(escButton)
@@ -59,14 +60,14 @@ $(document).ready(function () {
 		item.html(element)
 			.append(buttonGroup);
 		addEventListeners();
-		$("#textarea").focus();
+		$("#editText").focus();
 	}
 
 	function saveItemDetail() {
 		var item = $(this).parent().parent();
 		var itemId = Number(item[0].id);
-		list[itemId].itemDetail = item.children()
-			.filter("textarea")
+		records[itemId].itemDetail = item.children()
+			.filter("#editText")
 			.val();
 		showList();
 	}
@@ -74,7 +75,7 @@ $(document).ready(function () {
 	function deleteItem() {
 		var item = $(this).parent().parent();
 		var itemId = Number(item[0].id);
-		$("div").filter("#" + itemId).remove();
-		list.splice(itemId, 1);
+		records.splice(itemId, 1);
+		showList();
 	}
 });
