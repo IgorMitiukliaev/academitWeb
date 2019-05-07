@@ -29,8 +29,7 @@ $(document).ready(function () {
 	function showList() {
 		var item = $("#list");
 		item.empty();
-		var i = records.length - 1;
-		for (; i >= 0; i--) {
+		for (var i = records.length - 1; i >= 0; i--) {
 			var itemContent = $("<div></div>")
 				.attr("id", i)
 				.addClass("list-item input-group");
@@ -52,7 +51,7 @@ $(document).ready(function () {
 		var item = $(this).parent().parent();
 		var itemId = Number(item[0].id);
 		var element = $("<input id=\"editText\" class=\"form-control input-field\" type=\"text\">")
-			.val(records[itemId])
+			.val(records[itemId].itemDetail)
 			.addClass("form-control input-field");
 		var buttonGroup = $("<div class=\"input-group-append\" id=\"button-addon4\"></div>");
 		buttonGroup.append(escButton)
