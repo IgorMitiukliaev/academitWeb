@@ -27,7 +27,8 @@ var filteredList = _.chain(people)
 	.value();
 console.log(filteredList);
 
-var newList = _.each(people, function (person) {
+_.each(people, function (person) {
 	person.fullName = person.lastName + " " + person.name;
 });
-console.log(newList);
+
+console.log(people);
