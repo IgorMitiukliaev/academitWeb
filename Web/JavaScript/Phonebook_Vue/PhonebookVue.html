@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Phonebook</title>
@@ -15,13 +15,13 @@
 <div id="phoneBook" class="container-fluid">
     <span class="header">My contacts</span>
     <div id="inputForm" class="input-group mb-3 row">
-        <button v-on:click="addContact" class="addButton btn btn-outline-primary">+</button>
-        <input v-model="currentContact.firstName" type="text" class="form-control input-field col-3"
-               placeholder="First Name" v-bind:class="{highlight:(fieldIncomplete.firstName)}">
-        <input v-model=" currentContact.lastName" type="text" class="form-control input-field col-3"
-               placeholder="Last name" v-bind:class="{highlight:(fieldIncomplete.lastName)}">
-        <input v-model="currentContact.phone" type="text" class="form-control input-field col-2"
-               placeholder="Phone" v-bind:class="{highlight:(fieldIncomplete.phone)}">
+        <button class="addButton btn btn-outline-primary" v-on:click="addContact">+</button>
+        <input class="form-control input-field col-3" placeholder="First Name" type="text"
+               v-bind:class="{highlight:(fieldIncomplete.firstName)}" v-model="currentContact.firstName">
+        <input class="form-control input-field col-3" placeholder="Last name" type="text"
+               v-bind:class="{highlight:(fieldIncomplete.lastName)}" v-model=" currentContact.lastName">
+        <input class="form-control input-field col-2" placeholder="Phone" type="text"
+               v-bind:class="{highlight:(fieldIncomplete.phone)}" v-model="currentContact.phone">
         <span class="alert alert-danger" role="alert" v-if="formIncomplete">
             Fill the form!
         </span>
@@ -30,8 +30,8 @@
     <div id="contactList" class="container-fluid">
         <div class="row" v-bind:key="contacts.id" v-for="item in contacts">
             <div>
-                <button v-on:click="deleteContact([item.id])" v-bind:id="[item.id]"
-                        class="delButton btn btn-outline-primary">X
+                <button class="delButton btn btn-outline-primary" v-bind:id="[item.id]"
+                        v-on:click="deleteContact([item.id])">X
                 </button>
                 {{item.details.lastName}}, {{item.details.firstName}} phone:{{item.details.phone}}
             </div>
