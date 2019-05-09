@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phonebook</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="PhonebookVue.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+<script src="node_modules/jquery/dist/jquery.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script src="PhonebookVue.js"></script>
+
+<div id="phoneBook" class="container-fluid">
+    <span class="header">My contacts</span>
+    <div id="inputForm" class="input-group mb-3 row">
+        <button v-on:click="addContact" class="addButton btn btn-outline-primary">+</button>
+        <input v-model="currentContact.firstName" type="text" class="form-control input-field col-3"
+               placeholder="First Name" v-bind:class="{highlight:(fieldIncomplete.firstName)}">
+        <input v-model=" currentContact.lastName" type="text" class="form-control input-field col-3"
+               placeholder="Last name" v-bind:class="{highlight:(fieldIncomplete.lastName)}">
+        <input v-model="currentContact.phone" type="text" class="form-control input-field col-2"
+               placeholder="Phone" v-bind:class="{highlight:(fieldIncomplete.phone)}">
+        <span class="alert alert-danger" role="alert" v-if="formIncomplete">
+            Fill the form!
+        </span>
+    </div>
+    <hr>
+    <div id="contactList" class="container-fluid">
+        <div class="row" v-bind:key="contacts.id" v-for="item in contacts">
+            <div>
+                <button v-on:click="deleteContact([item.id])" v-bind:id="[item.id]"
+                        class="delButton btn btn-outline-primary">X
+                </button>
+                {{item.details.lastName}}, {{item.details.firstName}} phone:{{item.details.phone}}
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
