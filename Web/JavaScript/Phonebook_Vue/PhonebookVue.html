@@ -1,36 +1,38 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title>Phonebook</title>
+
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="PhonebookVue.css">
     <script src="node_modules/vue/dist/vue.js"></script>
 </head>
-<body>
-<script src="node_modules/jquery/dist/jquery.js"></script>
-<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
-<script src="PhonebookVue.js"></script>
 
-<div id="phoneBook" class="container-fluid">
-    <span class="header">My contacts</span>
-    <div id="inputForm" class="input-group mb-3 row">
+<body>
+<div id="phoneBook" class="container" v-cloak>
+    <h2><span class="header">My contacts</span></h2>
+
+    <hr>
+    <div id="inputForm" class="input-group mb-3 row my-row">
         <button class="addButton btn btn-outline-primary" v-on:click="addContact">+</button>
         <input class="form-control input-field col-3" placeholder="First Name" type="text"
-               v-bind:class="{highlight:(fieldIncomplete.firstName)}" v-model="currentContact.firstName">
+               v-bind:class="{ highlight : fieldIncomplete.firstName }" v-model="currentContact.firstName">
         <input class="form-control input-field col-3" placeholder="Last name" type="text"
-               v-bind:class="{highlight:(fieldIncomplete.lastName)}" v-model=" currentContact.lastName">
+               v-bind:class="{ highlight : fieldIncomplete.lastName }" v-model=" currentContact.lastName">
         <input class="form-control input-field col-2" placeholder="Phone" type="text"
-               v-bind:class="{highlight:(fieldIncomplete.phone)}" v-model="currentContact.phone">
+               v-bind:class="{ highlight : fieldIncomplete.phone }" v-model="currentContact.phone">
         <span class="alert alert-danger" role="alert" v-if="formIncomplete">
             Fill the form!
         </span>
     </div>
+
     <hr>
-    <div id="contactList" class="container-fluid">
-        <div class="row" v-bind:key="contacts.id" v-for="item in contacts">
+    <div id="contactList">
+        <div class="row my-row" v-bind:key="contacts.id" v-for="item in contacts">
             <div>
-                <button class="delButton btn btn-outline-primary" v-bind:id="[item.id]"
+                <button class="delButton btn btn-outline-primary" v-bind:id="item.id"
                         v-on:click="deleteContact([item.id])">X
                 </button>
                 {{item.details.lastName}}, {{item.details.firstName}} phone:{{item.details.phone}}
@@ -38,5 +40,8 @@
         </div>
     </div>
 </div>
+
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script src="PhonebookVue.js"></script>
 </body>
 </html>
