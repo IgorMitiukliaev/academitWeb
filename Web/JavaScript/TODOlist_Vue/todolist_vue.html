@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head xmlns:v-on="http://www.w3.org/1999/xhtml">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Список дел</title>
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="todolist_vue.css" type="text/css">
+</head>
+
+<body>
+<div id="my-form" class="container">
+    <h2><span class="header">Список дел</span></h2>
+
+    <div class="input-group mb-3 row my-row">
+        <input v-model="currentText" type="text" id="addField" class="form-control input-field"
+               placeholder="введите описание"/>
+        <button v-on:click="addItem" type="button" class="addButton btn my-btn btn-outline-primary">+</button>
+    </div>
+
+    <div class="my-list" v-cloak>
+        <div class="row my-row" v-for="item in items" v-bind:key="items.id">
+            {{ item.text }}
+            <button class="delButton btn my-btn btn-outline-primary" v-bind:id="item.id"
+                    v-on:click="deleteItem(item.id)">X
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script src="todolist_vue.js"></script>
+</body>
+</html>

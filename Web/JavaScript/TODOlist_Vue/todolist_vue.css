@@ -1,0 +1,22 @@
+.header {
+    text-transform: uppercase;
+    margin: 0px;
+}
+
+.my-btn {
+    margin-left: 5px;
+    width: 4em;
+}
+
+.my-list {
+    margin-left: 0;
+    padding-left: 5px;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+.my-row {
+    margin: 0 0 5px 0;
+}
