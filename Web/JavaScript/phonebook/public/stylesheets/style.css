@@ -1,0 +1,37 @@
+[v-cloak] {
+    display: none;
+}
+
+.header {
+    display: inline-block;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+#phoneBook {
+    box-sizing: border-box;
+    margin: 10px;
+    width: 80%;
+}
+
+.highlight {
+    border-color: red;
+    border-width: 2px;
+}
+
+.input-field {
+    margin: 0 5px;
+}
+
+.alert-danger {
+    padding: 6px 12px;
+    margin: 0 5px -1px 0;
+}
+
+.my-row {
+    margin: 0 0 5px 0;
+}
+
+[v-cloak] {
+    display: none;
+}
