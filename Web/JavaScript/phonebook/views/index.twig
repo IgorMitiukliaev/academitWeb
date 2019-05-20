@@ -4,50 +4,83 @@
     <div id="app" class="container">
         <h2 class="mt-2 mb-2"><span class="header">My contacts</span></h2>
         <hr>
-
-            <div class="row">
-                <div class="col">
-                    <input v-model="name" type="text" class="form-control" placeholder="Name">
-                </div>
-                <div class="col">
-                    <input v-model="phone" type="text" class="form-control" placeholder="Phone">
-                </div>
-                <div class="col">
-                    <button type="button" @click="addContact" class="btn btn-primary mb-2">+</button>
-                </div>
+        <div class="row">
+            <div class="col">
+                <input
+                        v-model="name"
+                        type="text"
+                        name="name"
+                        class="form-control input_form"
+                        placeholder="Name"
+                        v-validate="'required'">
+                <div v-if="err.name" class="err_msg" v-text="errors.first('name')"></div>
             </div>
 
-            <h2>Search</h2>
-            <div class="row mb-4">
-                <div class="col-4">
-                    <input v-model="searchTerm" @change="loadContacts" type="text" class="form-control" placeholder="search">
-                </div>
-                <div class="col">
-                    <button type="button" @click="loadContacts" class="btn btn-primary mb-2">Search</button>
-                </div>
+            <div class="col">
+                <input
+                        v-model="phone"
+                        type="text"
+                        name="phone"
+                        class="form-control input_form"
+                        placeholder="Phone"
+                        v-validate="'required|numeric'">
+                <div v-if="err.phone" class="err_msg" v-text="errors.first('phone')"></div>
             </div>
 
-        <table class="table table-striped">
+            <div class="col">
+                <button type="button" @click="addContact" class="btn btn-primary mb-2">+</button>
+            </div>
+        </div>
+
+        <h2>Search</h2>
+        <div class="row mb-4">
+            <div class="col-4">
+                <input v-model="searchTerm" @change="loadContacts(searchTerm)" type="text" class="form-control"
+                       placeholder="search">
+            </div>
+            <div class="col-1">
+                <button type="button" @click="loadContacts(searchTerm)" class="btn btn-primary mb-2" id="searchBtn">
+                    Search
+                </button>
+            </div>
+            <div class="col-1">
+                <button type="button" @click="loadContacts('')" class="btn btn-primary mb-2" id="clearBtn">Clear
+                </button>
+            </div>
+        </div>
+
+        <table class="table table-sm main-table">
+
             <thead>
             <tr>
+                <th>
+
+                </th>
                 <th>#</th>
                 <th>Name</th>
                 <th>Phone</th>
-                <th></th>
+                <th>
+                    <button @click="batchDeleteContacts" class="btn btn-secondary mb-2 btn-sm" type="button">X
+                    </button>
+                </th>
             </tr>
             </thead>
+
             <tbody>
             <tr v-cloak :key="contacts.id" v-for="(contact, index) in contacts">
+                <td>
+                    <input class="form-check-input position-static" type="checkbox" v-bind:value="contact.id"
+                           v-model="checkedItems">
+                </td>
                 <td v-text="index + 1 + '.'">.</td>
                 <td v-text="contact.name">.</td>
                 <td v-text="contact.phone">.</td>
-
                 <td>
-                    <button @click="deleteContact(contact)" class="btn btn-secondary mb-2" type="button">X</button>
+                    <button @click="deleteContact(contact)" class="btn btn-secondary mb-2 btn-sm" type="button">X
+                    </button>
                 </td>
             </tr>
             </tbody>
         </table>
-
     </div>
 {% endblock %}

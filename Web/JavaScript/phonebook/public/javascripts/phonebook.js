@@ -1,57 +1,104 @@
+Vue.use(VeeValidate, {
+	validity: true
+});
+
 new Vue({
 	el: "#app",
 	data: {
+		err: {
+			name: false,
+			phone: false
+		},
 		searchTerm: "",
 		contacts: [],
-		name: "",
-		phone: ""
+		checkedItems: [],
+		name: null,
+		phone: null
 	},
+
 	created: function () {
 		this.loadContacts();
 	},
+
 	methods: {
-		deleteContact: function (contact) {
-			var self = this;
-			$.post({
-				url: "/deleteContact",
-				data: JSON.stringify({
-					id: contact.id
-				}),
-				contentType: "application/json"
-			}).done(function () {
-				self.loadContacts();
-			})
-		},
 		addContact: function () {
-			var request = {
-				contacts: {
-					name: this.name,
-					phone: this.phone
-				}
-			};
 			if (this.name === "") {
+				this.err.name = true;
 				return;
+			} else {
+				this.err.name = false;
 			}
-			if (this.phone === "") {
+			if (isNaN(this.phone) || this.phone === "") {
+				this.err.phone = true;
 				return;
+			} else {
+				this.err.phone = false;
 			}
 
 			var self = this;
-			$.post({
-				url: "/addContact",
-				data: JSON.stringify(request),
-				contentType: "application/json"
-			}).done(function () {
-				self.name = "";
-				self.phone = "";
-				self.loadContacts();
-			});
+			var checkPhone = false;
+
+			$.get("/checkPhone", {phone: this.phone}, checkPhone)
+				.done(function (checkPhone) {
+					var confirmAdd = (checkPhone.phoneExists ? confirm("Phone already exists, add new contact?") : true);
+					if (confirmAdd) {
+						var request = {
+							contacts: {
+								name: self.name,
+								phone: self.phone
+							}
+						};
+
+						$.post({
+							url: "/addContact",
+							data: JSON.stringify(request),
+							contentType: "application/json"
+						});
+					}
+					self.name = "";
+					self.phone = "";
+					self.loadContacts()
+				});
 		},
-		loadContacts: function () {
+
+		deleteContact: function (contact) {
+			var answer = confirm("Delete data?");
+			if (answer) {
+				var self = this;
+				$.post({
+					url: "/deleteContact",
+					data: JSON.stringify({
+						id: contact.id
+					}),
+					contentType: "application/json"
+				}).done(function () {
+					self.loadContacts();
+				});
+			}
+		},
+
+		loadContacts: function (term) {
 			var self = this;
-			$.get("/getContacts", {term: this.searchTerm}).done(function (contacts) {
+			self.searchTerm = term;
+			$.get("/getContacts", {term: term}).done(function (contacts) {
 				self.contacts = contacts;
 			});
 		},
+
+		batchDeleteContacts: function () {
+			var answer = confirm("Delete data?");
+			if (answer) {
+				var self = this;
+				$.post({
+					url: "/batchDeleteContacts",
+					data: JSON.stringify({
+						contacts: this.checkedItems
+					}),
+					contentType: "application/json"
+				}).done(function () {
+					self.loadContacts();
+				});
 			}
+		}
+	}
 });
