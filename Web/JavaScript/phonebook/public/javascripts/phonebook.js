@@ -22,43 +22,29 @@ new Vue({
 
 	methods: {
 		addContact: function () {
-			if (this.name === "") {
-				this.err.name = true;
+			this.err.name = this.name === "";
+			this.err.phone = (isNaN(this.phone) || this.phone === "");
+			if(this.err.name||this.err.phone){
 				return;
-			} else {
-				this.err.name = false;
-			}
-			if (isNaN(this.phone) || this.phone === "") {
-				this.err.phone = true;
-				return;
-			} else {
-				this.err.phone = false;
 			}
 
 			var self = this;
-			var checkPhone = false;
+			var request = {
+				contacts: {
+					name: self.name,
+					phone: self.phone
+				}
+			};
 
-			$.get("/checkPhone", {phone: this.phone}, checkPhone)
-				.done(function (checkPhone) {
-					var confirmAdd = (checkPhone.phoneExists ? confirm("Phone already exists, add new contact?") : true);
-					if (confirmAdd) {
-						var request = {
-							contacts: {
-								name: self.name,
-								phone: self.phone
-							}
-						};
-
-						$.post({
-							url: "/addContact",
-							data: JSON.stringify(request),
-							contentType: "application/json"
-						});
-					}
-					self.name = "";
-					self.phone = "";
-					self.loadContacts()
-				});
+			$.post({
+				url: "/addContact",
+				data: JSON.stringify(request),
+				contentType: "application/json"
+			}).done(function () {
+				self.name = "";
+				self.phone = "";
+				self.loadContacts();
+			});
 		},
 
 		deleteContact: function (contact) {
@@ -83,16 +69,18 @@ new Vue({
 			$.get("/getContacts", {term: term}).done(function (contacts) {
 				self.contacts = contacts;
 			});
-		},
+		}
+		,
 
-		batchDeleteContacts: function () {
+		batchDeleteContacts: function (term) {
 			var answer = confirm("Delete data?");
 			if (answer) {
 				var self = this;
 				$.post({
 					url: "/batchDeleteContacts",
 					data: JSON.stringify({
-						contacts: this.checkedItems
+						contacts: this.checkedItems,
+						term: term
 					}),
 					contentType: "application/json"
 				}).done(function () {
@@ -101,4 +89,5 @@ new Vue({
 			}
 		}
 	}
-});
+})
+;

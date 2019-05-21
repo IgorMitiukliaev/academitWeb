@@ -12,23 +12,26 @@ var id = 0;
 router.get("/getContacts", function (req, res) {
 	var term = (req.query.term || "").toUpperCase();
 	var filteredContacts = term === "" ? contacts : contacts.filter(function (c) {
-		return term === "" || c.phone.toUpperCase().indexOf(term) >= 0
+		return c.phone.toUpperCase().indexOf(term) >= 0
 			|| c.name.toUpperCase().indexOf(term) >= 0;
 	});
 	res.send(filteredContacts);
 });
 
-router.get("/checkPhone", function (req, res) {
-	var phoneExists = false;
-	if (contacts.length !== 0) {
-		var phone = (req.query.phone);
-		contacts.forEach(function (c) {
-			if (c.phone === phone) {
-				phoneExists = true;
-			}
-		});
+router.post("/addContact", function (req, res) {
+	var contact = req.body.contacts;
+	var phone = contact.phone;
+	var phoneExists = (contacts.length > 0 ? contacts.some(function (c) {
+		return c.phone === phone;
+	}) : false);
+	if (phoneExists) {
+		res.send({success: false});
+	} else {
+		contact.id = id;
+		++id;
+		contacts.push(contact);
+		res.send({success: true});
 	}
-	res.send({phoneExists: phoneExists});
 });
 
 router.post("/deleteContact", function (req, res) {
@@ -39,19 +42,25 @@ router.post("/deleteContact", function (req, res) {
 	res.send(true);
 });
 
-router.post("/addContact", function (req, res) {
-	var contact = req.body.contacts;
-	contact.id = id;
-	++id;
-	contacts.push(contact);
-	res.send({success: true});
-});
-
 router.post("/batchDeleteContacts", function (req, res) {
 	var checkedItems = req.body.contacts;
-	contacts = contacts.filter(function (c) {
-		return checkedItems.indexOf(c.id) < 0;
+	var term = (req.body.term || "").toUpperCase();
+	var filteredCheckedItems = contacts.filter(function (c) {
+		return checkedItems.indexOf(c.id) >= 0;
 	});
+	if (term !== "") {
+		filteredCheckedItems = filteredCheckedItems.filter(function (c) {
+			console.log(c.phone.toUpperCase().indexOf(term));
+			console.log(c.name.toUpperCase().indexOf(term));
+			return c.phone.toUpperCase().indexOf(term) >= 0
+				|| c.name.toUpperCase().indexOf(term) >= 0;
+		});
+	}
+
+	contacts = contacts.filter(function (c) {
+		return filteredCheckedItems.indexOf(c) < 0;
+	});
+
 	res.send(true);
 });
 

@@ -2,7 +2,7 @@
     display: none;
 }
 
-.main-table tr{
+.main-table tr {
     margin-bottom: 0;
 }
 
@@ -13,4 +13,17 @@
 .err_msg {
     font-size: small;
     color: red;
+}
+
+.custom-btn {
+    width: 150px;
+    padding: 5px 2px;
+}
+
+.justify-center {
+    text-align: center;
+}
+
+.justify-left {
+    text-align: left;
 }

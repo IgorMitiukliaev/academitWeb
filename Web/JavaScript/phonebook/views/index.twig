@@ -2,10 +2,17 @@
 
 {% block body %}
     <div id="app" class="container">
-        <h2 class="mt-2 mb-2"><span class="header">My contacts</span></h2>
+        <div class="row align-items-center mt-3">
+            <div class="col-5">
+                <h2><span class="header">My phonebook</span></h2>
+            </div>
+            <div class="col-2">
+                <button type="button" @click="addContact" class="btn btn-primary custom-btn">Add new contact</button>
+            </div>
+        </div>
         <hr>
-        <div class="row">
-            <div class="col">
+        <div class="row align-items-center mb-2">
+            <div class="col-7">
                 <input
                         v-model="name"
                         type="text"
@@ -15,8 +22,9 @@
                         v-validate="'required'">
                 <div v-if="err.name" class="err_msg" v-text="errors.first('name')"></div>
             </div>
-
-            <div class="col">
+        </div>
+        <div class="row align-items-center mb-2">
+            <div class="col-7">
                 <input
                         v-model="phone"
                         type="text"
@@ -26,57 +34,67 @@
                         v-validate="'required|numeric'">
                 <div v-if="err.phone" class="err_msg" v-text="errors.first('phone')"></div>
             </div>
-
-            <div class="col">
-                <button type="button" @click="addContact" class="btn btn-primary mb-2">+</button>
-            </div>
         </div>
 
-        <h2>Search</h2>
-        <div class="row mb-4">
-            <div class="col-4">
-                <input v-model="searchTerm" @change="loadContacts(searchTerm)" type="text" class="form-control"
-                       placeholder="search">
+        <hr>
+        <div class="row align-items-center mt-3">
+            <div class="col-5 ">
+                <h2><span class="header">Search</span></h2>
             </div>
-            <div class="col-1">
-                <button type="button" @click="loadContacts(searchTerm)" class="btn btn-primary mb-2" id="searchBtn">
+            <div class="col-2">
+                <button type="button" @click="loadContacts(searchTerm)" class="btn btn-primary custom-btn"
+                        id="searchBtn">
                     Search
                 </button>
             </div>
-            <div class="col-1">
-                <button type="button" @click="loadContacts('')" class="btn btn-primary mb-2" id="clearBtn">Clear
+        </div>
+        <div class="row align-items-center mb-4">
+            <div class="col-5">
+                <input v-model="searchTerm" @keyup="loadContacts(searchTerm)" type="text" class="form-control"
+                       placeholder="Name / Phone">
+            </div>
+            <div class="col-2">
+                <button type="button" @click="loadContacts('')" class="btn btn-primary custom-btn" id="clearBtn">Clear
+                    search
+                </button>
+
+            </div>
+        </div>
+        <hr>
+        <div class="row align-items-center mt-3">
+            <div class="col-5 ">
+                <h2><span class="header">Contacts</span></h2>
+            </div>
+            <div class="col-2">
+                <button @click="batchDeleteContacts(searchTerm)" class="btn btn-primary custom-btn" type="button">Delete selected
                 </button>
             </div>
         </div>
 
         <table class="table table-sm main-table">
-
             <thead>
             <tr>
-                <th>
-
-                </th>
-                <th>#</th>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>
-                    <button @click="batchDeleteContacts" class="btn btn-secondary mb-2 btn-sm" type="button">X
-                    </button>
-                </th>
+                <th></th>
+                <th class="justify-center">#</th>
+                <th class="justify-left">Name</th>
+                <th class="justify-left">Phone</th>
+                <th class="justify-center"></th>
             </tr>
             </thead>
 
             <tbody>
             <tr v-cloak :key="contacts.id" v-for="(contact, index) in contacts">
-                <td>
-                    <input class="form-check-input position-static" type="checkbox" v-bind:value="contact.id"
-                           v-model="checkedItems">
+                <td class="justify-center">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" v-bind:value="contact.id"
+                               v-model="checkedItems">
+                    </div>
                 </td>
-                <td v-text="index + 1 + '.'">.</td>
-                <td v-text="contact.name">.</td>
-                <td v-text="contact.phone">.</td>
-                <td>
-                    <button @click="deleteContact(contact)" class="btn btn-secondary mb-2 btn-sm" type="button">X
+                <td class="justify-center" v-text="index + 1 + '.'">.</td>
+                <td class="justify-left" v-text="contact.name">.</td>
+                <td class="justify-left" v-text="contact.phone">.</td>
+                <td class="justify-center">
+                    <button @click="deleteContact(contact)" class="btn btn-secondary btn-sm" type="button">X
                     </button>
                 </td>
             </tr>
