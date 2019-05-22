@@ -6,7 +6,7 @@
     margin-bottom: 0;
 }
 
-.input_form input:invalid {
+.input_form.error {
     border-color: red;
 }
 

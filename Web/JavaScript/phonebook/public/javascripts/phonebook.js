@@ -13,53 +13,68 @@ new Vue({
 		contacts: [],
 		checkedItems: [],
 		name: null,
-		phone: null
+		phone: null,
+		batchDelDisabled: true
 	},
 
 	created: function () {
 		this.loadContacts();
 	},
 
+	computed: {
+		classError: function () {
+			var self = this;
+			this.err.name = this.name === "" || this.name === null;
+			this.err.phone = isNaN(this.phone) || this.phone === "" || this.phone === null;
+			return this.err;
+		}
+	},
+
 	methods: {
+		request: function (url, data, context) {
+			$.post({
+				url: url,
+				data: data,
+				contentType: "application/json"
+			}).done(function () {
+				context.loadContacts();
+			});
+		},
+
 		addContact: function () {
-			this.err.name = this.name === "";
-			this.err.phone = (isNaN(this.phone) || this.phone === "");
-			if(this.err.name||this.err.phone){
+			var self = this;
+			if (this.classError.name||this.classError.phone) {
 				return;
 			}
 
-			var self = this;
 			var request = {
 				contacts: {
 					name: self.name,
 					phone: self.phone
 				}
 			};
-
-			$.post({
-				url: "/addContact",
-				data: JSON.stringify(request),
-				contentType: "application/json"
-			}).done(function () {
-				self.name = "";
-				self.phone = "";
-				self.loadContacts();
-			});
+			this.request(
+				"/addContact",
+				JSON.stringify(request),
+				self);
+			self.name = "";
+			self.phone = "";
+			this.err = {
+				name: false,
+				phone: false
+			}
 		},
 
 		deleteContact: function (contact) {
 			var answer = confirm("Delete data?");
 			if (answer) {
 				var self = this;
-				$.post({
-					url: "/deleteContact",
-					data: JSON.stringify({
+				this.request(
+					"/deleteContact",
+					JSON.stringify({
 						id: contact.id
 					}),
-					contentType: "application/json"
-				}).done(function () {
-					self.loadContacts();
-				});
+					self);
 			}
 		},
 
@@ -69,25 +84,26 @@ new Vue({
 			$.get("/getContacts", {term: term}).done(function (contacts) {
 				self.contacts = contacts;
 			});
-		}
-		,
+		},
+
+		enableBatchDelete: function () {
+			this.batchDelDisabled = this.checkedItems.length === 0;
+		},
 
 		batchDeleteContacts: function (term) {
 			var answer = confirm("Delete data?");
 			if (answer) {
 				var self = this;
-				$.post({
-					url: "/batchDeleteContacts",
-					data: JSON.stringify({
+				this.request(
+					"/batchDeleteContacts",
+					JSON.stringify({
 						contacts: this.checkedItems,
 						term: term
 					}),
-					contentType: "application/json"
-				}).done(function () {
-					self.loadContacts();
-				});
+					self);
+				this.checkedItems = [];
+				this.batchDelDisabled = true;
 			}
 		}
 	}
-})
-;
+});

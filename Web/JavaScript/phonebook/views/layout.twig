@@ -21,7 +21,11 @@
 <script src="/libs/vee-validate.js"></script>
 <script src="/javascripts/phonebook.js"></script>
 <script>
-    Vue.use(VeeValidate);
+	Vue.use(VeeValidate, {
+		classes: true, classNames: {
+			untouched: 'is-untouched'
+		}
+	});
 </script>
 </body>
 </html>

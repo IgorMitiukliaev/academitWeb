@@ -10,33 +10,38 @@
                 <button type="button" @click="addContact" class="btn btn-primary custom-btn">Add new contact</button>
             </div>
         </div>
+
         <hr>
+
         <div class="row align-items-center mb-2">
-            <div class="col-7">
+            <div class="col-7 control">
                 <input
                         v-model="name"
                         type="text"
                         name="name"
                         class="form-control input_form"
                         placeholder="Name"
-                        v-validate="'required'">
+                        v-validate="'required'"
+                        v-bind:class="{error:classError.name}">
                 <div v-if="err.name" class="err_msg" v-text="errors.first('name')"></div>
             </div>
         </div>
         <div class="row align-items-center mb-2">
-            <div class="col-7">
+            <div class="col-7 control">
                 <input
                         v-model="phone"
                         type="text"
                         name="phone"
                         class="form-control input_form"
                         placeholder="Phone"
-                        v-validate="'required|numeric'">
+                        v-validate="'required|numeric'"
+                        v-bind:class="{error:classError.phone}">
                 <div v-if="err.phone" class="err_msg" v-text="errors.first('phone')"></div>
             </div>
         </div>
 
         <hr>
+
         <div class="row align-items-center mt-3">
             <div class="col-5 ">
                 <h2><span class="header">Search</span></h2>
@@ -60,13 +65,16 @@
 
             </div>
         </div>
+
         <hr>
+
         <div class="row align-items-center mt-3">
             <div class="col-5 ">
                 <h2><span class="header">Contacts</span></h2>
             </div>
             <div class="col-2">
-                <button @click="batchDeleteContacts(searchTerm)" class="btn btn-primary custom-btn" type="button">Delete selected
+                <button @click="batchDeleteContacts(searchTerm)" class="btn btn-primary custom-btn" type="button"
+                        v-bind:disabled="batchDelDisabled">Delete selected
                 </button>
             </div>
         </div>
@@ -87,7 +95,7 @@
                 <td class="justify-center">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" v-bind:value="contact.id"
-                               v-model="checkedItems">
+                               v-model="checkedItems" @change="enableBatchDelete">
                     </div>
                 </td>
                 <td class="justify-center" v-text="index + 1 + '.'">.</td>
