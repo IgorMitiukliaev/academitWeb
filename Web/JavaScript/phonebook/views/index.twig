@@ -24,7 +24,7 @@
                         class="form-control input_form"
                         placeholder="Name"
                         v-validate="'required'"
-                        :class="{'error': errors.has('name')}"
+                        :class="{'error': errors.has('phone') && fields.name.dirty}"
                 >
                 <div v-if="errors.has('name')" class="err_msg" v-text="errors.first('name')"></div>
             </div>
@@ -38,9 +38,10 @@
                         class="form-control input_form"
                         placeholder="Phone"
                         v-validate="'required|numeric'"
-                        :class="{'error': errors.has('phone')}"
+                        :class="{'error': errors.has('phone') && fields.phone.dirty}"
                 >
                 <div v-if="errors.has('phone')" class="err_msg" v-text="errors.first('phone')"></div>
+                <div v-if="err.phoneExists" class="err_msg" >This phone exists</div>
             </div>
         </div>
         <hr>
